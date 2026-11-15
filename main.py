@@ -5,7 +5,6 @@ def writeFile(Filename: str, Content: str) -> None:
     file = open(Filename, 'w', encoding="UTF-8")
     file.write(Content)
     file.close()
-
 def askRows() -> str:
     """Asks rows from the user until an empty row. Returns all rows joined with newlines."""
     print("Collecting plain text rows for ciphering.")
@@ -16,11 +15,11 @@ def askRows() -> str:
             break
         Content += Row + "\n"
     return Content
-
 def shiftCharacter(Character: str, Alphabets: str, Shift: int = 13) -> str:
     """Shifts one character by Shift positions in the given alphabets."""
     Index = Alphabets.find(Character)
     return Alphabets[(Index + Shift) % len(Alphabets)]
+
 
 def rot13(Content: str) -> str:
     """Applies ROT13 to letters, other characters remain the same."""
@@ -53,5 +52,5 @@ def main() -> None:
         writeFile(Filename, CipheredText)
         print("Ciphered text saved!")
     print("Program ending.")
-
-main()
+if __name__ == "__main__":
+    main()
