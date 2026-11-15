@@ -1,13 +1,13 @@
 LOWER_ALPHABETS = "abcdefghijklmnopqrstuvwxyz"
 UPPER_ALPHABETS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
-def writer(Filename: str, Content: str):
+def writer(Filename: str, Content: str) -> None:
     """Saves the text to a file with the given filename."""
     file = open(Filename, 'w', encoding="UTF-8")
     file.write(Content)
     file.close()
 
-def rowmaker():
+def rowmaker() -> str:
     """Asks rows from the user until an empty row. Returns all rows joined with newlines."""
     print("Collecting plain text rows for ciphering.")
     Content: str = ""
@@ -23,7 +23,7 @@ def swift(Character: str, Alphabets: str, Shift: int = 13) -> str:
     Index = Alphabets.find(Character)
     return Alphabets[(Index + Shift) % len(Alphabets)]
 
-def forest(Content: str):
+def forest(Content: str) -> str:
     """Applies ROT13 to letters, other characters remain the same."""
     Result: str = ""
     for Character in Content:
@@ -35,7 +35,7 @@ def forest(Content: str):
             Result += Character
     return Result
 
-def main():
+def main() -> None:
     print("Program starting.")
     print()
     PlainText: str = rowmaker()
