@@ -54,5 +54,7 @@ def main() -> None:
         writer(Filename, CipheredText)
         print("Ciphered text saved!")
     print("Program ending.")
+
+
 if __name__ == "__main__":
     main()
