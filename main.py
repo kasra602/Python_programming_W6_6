@@ -1,11 +1,13 @@
 LOWER_ALPHABETS = "abcdefghijklmnopqrstuvwxyz"
 UPPER_ALPHABETS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-def writeFile(Filename: str, Content: str) -> None:
+
+def writer(Filename: str, Content: str):
     """Saves the text to a file with the given filename."""
     file = open(Filename, 'w', encoding="UTF-8")
     file.write(Content)
     file.close()
-def askRows() -> str:
+
+def rowmaker():
     """Asks rows from the user until an empty row. Returns all rows joined with newlines."""
     print("Collecting plain text rows for ciphering.")
     Content: str = ""
@@ -15,29 +17,29 @@ def askRows() -> str:
             break
         Content += Row + "\n"
     return Content
-def shiftCharacter(Character: str, Alphabets: str, Shift: int = 13) -> str:
+
+def swift(Character: str, Alphabets: str, Shift: int = 13) -> str:
     """Shifts one character by Shift positions in the given alphabets."""
     Index = Alphabets.find(Character)
     return Alphabets[(Index + Shift) % len(Alphabets)]
 
-
-def rot13(Content: str) -> str:
+def forest(Content: str):
     """Applies ROT13 to letters, other characters remain the same."""
     Result: str = ""
     for Character in Content:
         if Character in LOWER_ALPHABETS:
-            Result += shiftCharacter(Character, LOWER_ALPHABETS)
+            Result += swift(Character, LOWER_ALPHABETS)
         elif Character in UPPER_ALPHABETS:
-            Result += shiftCharacter(Character, UPPER_ALPHABETS)
+            Result += swift(Character, UPPER_ALPHABETS)
         else:
             Result += Character
     return Result
 
-def main() -> None:
+def main():
     print("Program starting.")
     print()
-    PlainText: str = askRows()
-    CipheredText: str = rot13(PlainText)
+    PlainText: str = rowmaker()
+    CipheredText: str = forest(PlainText)
 
     print()
     print("#### Ciphered text ####")
@@ -49,7 +51,7 @@ def main() -> None:
         print("File name not defined.")
         print("Aborting save operation.")
     else:
-        writeFile(Filename, CipheredText)
+        writer(Filename, CipheredText)
         print("Ciphered text saved!")
     print("Program ending.")
 if __name__ == "__main__":
